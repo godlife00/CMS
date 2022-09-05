@@ -1,0 +1,58 @@
+// 모달팝업
+.modal-content {    
+    box-sizing: border-box;
+    z-index: 999;    
+    padding: 15px 30px;    
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+}
+.modal {
+    .pop_header {
+        padding: 30px 0 10px;
+        border-bottom: 1px solid #e7eaf2;
+
+        .pop_title {
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: -1.05px;
+            color: #333;
+        }
+
+        .clse {
+            cursor: pointer;
+            position: absolute;
+            display: inline-block;
+            padding: 4px;
+            width: 24px;
+            height: 24px;
+            right: 14px;
+            top: 14px;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                right: 7px;
+                top: 0;
+                height: 24px;
+                width: 1px;
+                background: #333;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .close-modal {
+        display: none;
+        visibility: hidden;
+    }
+}

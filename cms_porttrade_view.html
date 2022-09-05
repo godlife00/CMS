@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+    <title>회원/결제 - FN데이터 뷰어 Admin Panel</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/smartadmin-skins.min.css">
+
+    <!-- SmartAdmin RTL Support is under construction-->
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/smartadmin-rtl.min.css">
+
+    <!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="http://kapi.choicestock.co.kr/admin_assets/css/your_style.css"> -->
+
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/jqgrid_custom.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/ui.daterangepicker.css">
+
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://kapi.choicestock.co.kr/admin_assets/css/demo.min.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="http://kapi.choicestock.co.kr/admin_assets/img/favicon/favicon.ico"
+        type="image/x-icon">
+    <link rel="icon" href="http://kapi.choicestock.co.kr/admin_assets/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- GOOGLE FONT - ->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+		-->
+
+    <!-- Specifying a Webpage Icon for Web Clip
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <script>
+        var ASSETS_URL = '/admin_assets';
+    </script>
+
+    <link rel="apple-touch-icon" href="http://kapi.choicestock.co.kr/admin_assets/img/favicon/favicon.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image"
+        href="http://kapi.choicestock.co.kr/admin_assets/img/splash/ipad-landscape.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="http://kapi.choicestock.co.kr/admin_assets/img/splash/ipad-portrait.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="http://kapi.choicestock.co.kr/admin_assets/img/splash/iphone.png"
+        media="screen and (max-device-width: 320px)">
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/libs/jquery-2.0.2.min.js"></script>
+
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/libs/jquery-ui-1.10.3.min.js"></script>
+
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/jquery-cookie/jquery.cookie.js"></script>
+
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/jquery-numeric/jquery.numeric.js"></script>
+
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/common.js"></script>
+
+    <script>
+        var search_ticker_list = null;
+    </script>
+
+</head>
+
+<body>
+
+    <script>
+        if (localStorage.getItem('sm-setmenu') == null) {
+            localStorage.setItem('sm-setmenu', "top")
+        }
+
+        if (localStorage.getItem('sm-setmenu') == 'top') {
+            $('body').addClass('menu-on-top');
+        } else if (localStorage.getItem('sm-left-hide') == 'Y') {
+            $('body').addClass('minified');
+        }
+
+        if (localStorage.getItem('sm-setmenufix') == 'Y') {
+            $('body').addClass('fixed-header');
+            $('body').addClass('fixed-navigation');
+        }
+    </script>
+    <!-- POSSIBLE CLASSES: minified, fixed-ribbon, fixed-header, fixed-width
+			 You can also add different skin classes such as "smart-skin-1", "smart-skin-2" etc...-->
+    <!-- HEADER -->
+    <header id="header">
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> <a href="/adminpanel"><img
+                        src="http://kapi.choicestock.co.kr/admin_assets/img/logo-admin.png" alt="FN데이터 뷰어"
+                        style="width:150px;"></a> </span>
+            <!-- END LOGO PLACEHOLDER -->
+
+            <!-- Note: The activity badge color changes when clicked and resets the number to 0
+						Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+        </div>
+
+
+        <!-- pulled right: nav area -->
+        <div class="pull-right">
+
+            <!-- collapse menu button -->
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" title="Collapse Menu" data-action="toggleMenu"><i
+                            class="fa fa-reorder"></i></a> </span>
+            </div>
+            <!-- end collapse menu -->
+
+            <!-- #MOBILE -->
+            <!-- Top menu profile link : this shows only when top menu is active -->
+            <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                <li class="">
+                    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                        <img src="http://kapi.choicestock.co.kr/admin_assets/img/avatars/sunny.png" alt="김수겸"
+                            class="online" />
+                        <span style='font-weight:bold;color:#339922;text-decoration:none;'>김수겸</span>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/account/logout"
+                                class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i
+                                    class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div id="view_type" style="display: none;" class="btn-header transparent pull-right">
+                <span><a href="#"><i class="fa fa-mobile"></i></a> </span>
+            </div>
+
+            <script type="text/javascript">
+                /*
+                Extra small devices : Phones (<768px)
+                Small devices       : Tablets (≥768px)
+                Medium devices      : Desktops (≥992px)
+                Large devices       : Desktops (≥1200px)
+                 */
+
+                var view_width = parseInt(screen.availWidth, 10);
+                var view_type = 'PC';    // M(Mobile), PC
+
+                if (false) {
+                    view_type = 'M';
+                    if ($.cookie('admin_device_view')) {
+                        view_type = $.cookie('admin_device_view');
+                    }
+
+                    var viewport_meta_tag = '<meta name="viewport" content="user-scalable=no,initial-scale=1.0,maximum-scale=3.0,minimum-scale=0.1,width=device-width,target-densitydpi=medium-dpi">';
+                    if (view_type == 'PC') {
+                        viewport_meta_tag = '<meta name="viewport" content="width=1200,initial-scale=0.3,user-scalable=yes,maximum-scale=3.0,minimum-scale=0.1">';
+                    }
+
+                    document.write(viewport_meta_tag);
+                }
+
+                $(function () {
+
+                    if (view_type == 'M') {
+                        $('#view_type').find('i').removeClass('fa-desktop').addClass('fa-mobile');
+                    }
+
+                    if (false) {
+                        $('#view_type').css('display', 'block').click(function () {
+                            switch (view_type) {
+                                case 'PC':
+                                    $.cookie('admin_device_view', 'M');
+                                    break;
+
+                                default:
+                                case 'M':
+                                    $.cookie('admin_device_view', 'PC');
+                                    break;
+                            }
+                            location.reload();
+                        });
+                    }
+                });
+            </script>
+
+            <!-- logout button -->
+            <div id="logout" class="btn-header transparent pull-right" rel="tooltip" data-placement="bottom"
+                title="Sign Out">
+                <span> <a href="http://kapi.choicestock.co.kr/adminpanel/account/logout" title="Sign Out"
+                        data-action="userLogout"
+                        data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
+                            class="fa fa-sign-out"></i></a> </span>
+            </div>
+            <!-- end logout button -->
+
+
+        </div>
+        <!-- end pulled right: nav area -->
+
+    </header>
+    <!-- END HEADER -->
+
+    <!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+				Note: These tiles are completely responsive,
+				you can add as many as you like
+				-->
+    <!-- END SHORTCUT AREA -->
+
+    <!-- Left panel : Navigation area -->
+    <!-- Note: This width of the aside area can be adjusted through LESS variables -->
+    <aside id="left-panel">
+
+        <!-- User info -->
+        <div class="login-info">
+            <span>
+                <!-- User image size is adjusted inside CSS, it should stay as is -->
+
+                <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                    <img src="/admin_assets/img/avatars/sunny.png" alt="me" style="border-left:none;">
+                    <span>
+                        김수겸 </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+
+            </span>
+        </div>
+        <!-- end user info -->
+
+        <!-- NAVIGATION : This navigation is also responsive
+
+        To make this navigation dynamic please make sure to link the node
+        (the reference to the nav > ul) after page load. Or the navigation
+        will not initialize.
+        -->
+        <nav>
+            <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+            Please note that these links work a bit different than
+            traditional hre="" links. See documentation for details.
+            -->
+            <ul>
+                <li><a href="http://kapi.choicestock.co.kr/adminpanel" title="Home"><i
+                            class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a></li>
+                <li><a href="#" title="초스K"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">초스K</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/recommend"> 종목추천</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/explore"> 종목노트</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/vod"> 동영상</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/news"> 뉴스</a>
+
+                        </li>
+                        <li class="active">
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/push"> 푸시</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/main/notify"> 알림관리</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="Data"><i class="fa fa-lg fa-fw fa-database"></i> <span
+                            class="menu-item-parent">Data</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tc_company"> TC_COMPANY</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tc_sector"> TC_SECTOR</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tc_sec_rel"> TC_SEC_REL</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tf_cmp_findata_info">
+                                TF_CMP_FINDATA_INFO</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tf_cmp_finprd"> TF_CMP_FINPRD</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tz_item"> TZ_ITEM</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tf_cmp_findata"> TF_CMP_FINDATA</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tz_item_ifrs"> TZ_ITEM_IFRS</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tf_cmp_findata_ifrs">
+                                TF_CMP_FINDATA_IFRS</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/ts_stock"> TS_STOCK</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/ts_stk_daily"> TS_STK_DAILY</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/ts_stk_hist"> WS_STK_HIST</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/data/tk_cmp_hist"> TK_CMP_HIST</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="슈스톡"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">슈스톡</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/sslist"> 전체목록보기</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/winner"> 오늘의승부주</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/strategy"> 포트폴리오 종목</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/portfolio"> 포트폴리오 관리</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/smslist"> 문자목록</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/sms"> 문자발송</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/super/notify"> 알립니다</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="민앤지"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">민앤지</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/hecto/portone"> 포트&lt;1호&gt; 관리(DB입력)</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/hecto/porttrade"> 1호 매매전략 입력</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/hecto/porttwo"> 포트&lt;2호&gt; 관리(DB입력)</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="밸류라인"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">밸류라인</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/valueline/notify"> 알립니다</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="회원/결제"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">회원/결제</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/member/vlist"> 유료회원현황</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/member/mlist"> 회원관리</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/member/plist"> 결제관리</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="시스템"><i class="fa fa-lg fa-fw fa-gear"></i> <span
+                            class="menu-item-parent">시스템</span></a>
+                    <ul>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/manage/admins"> 어드민 관리</a>
+
+                        </li>
+                        <li>
+                            <a href="http://kapi.choicestock.co.kr/adminpanel/manage/history"> 어드민 로그</a>
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+        <span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+
+    </aside>
+    <!-- END NAVIGATION -->
+    <!-- ==========================CONTENT STARTS HERE ========================== -->
+    <!-- MAIN PANEL -->
+    <style>
+        .fc-sun {
+            color: red;
+        }
+
+        .fc-sat {
+            color: blue;
+        }
+
+        div>div.ui-jqgrid-bdiv {
+            height: auto !important;
+        }
+
+        .ui-jqgrid .ui-jqgrid-toppager {
+            height: 45px !important;
+            padding: 10px !important;
+        }
+
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            overflow-x: auto;
+        }
+    </style>
+
+    <div id="main" role="main">
+
+        <!-- RIBBON -->
+        <div id="ribbon">
+
+            <span class="ribbon-button-alignment">
+                <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip"
+                    data-placement="bottom"
+                    data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+                    data-html="true"><i class="fa fa-refresh fs-spin"></i></span>
+            </span>
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="http://kapi.choicestock.co.kr/adminpanel">Home</a></li>
+                <li>민앤지</li>
+                <li>1호 매매전략 입력</li>
+            </ol>
+            <!-- end breadcrumb -->
+        </div>
+        <!-- END RIBBON -->
+
+        <!-- MAIN CONTENT -->
+        <div id="content">
+            <!-- 회원/결제 cms 하드코딩 시작 -->
+            <div class="sStokes cmsWrap">
+                <link rel="stylesheet" type="text/css" href="css/DH_cms.css" />
+                <!-- cms css -->
+                <script src="js/DH_cms.js"></script>
+                <!-- cms js -->
+                <!-- jQuery Modal -->
+                <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /> -->
+
+                <div class="superstocks_wrap">
+
+                    <div class="row">
+
+                        <!-- col -->
+                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                            <h1 class="page-title txt-color-blueDark">
+                                <!-- PAGE HEADER -->
+                                <i class="fa-fw fa fa-home"></i>
+                                민앤지 <span>&gt; 1호 매매전략 입력</span>
+                            </h1>
+                        </div>
+                        <!-- end col -->
+
+                    </div>
+
+                    <div class="flexArea">
+                        <div class="left">
+
+                            <div class="tabsArea">
+                                <form name="ss_wform" method="post" action="">
+                                    <div class="formWrap">
+                                        <!--매수 컨텐츠 입력-->
+                                        <div class="cont_wrap">
+                                            <div class="left">
+                                                <div class="box">
+
+                                                    <div class="fieldset_table">
+                                                        <fieldset>
+                                                            <ul>
+                                                                <li class="th">제목</li>
+                                                                <li class="td"><input type="text" value="" name=""
+                                                                        class="price" style="width: 100%;"></li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">작성자</li>
+                                                                <li class="td">
+                                                                    <input type="text" value="" name="" class="price"
+                                                                        style="width: 120px;">
+                                                                    <a href="#" class="btn_sch">작성자변경</a>
+                                                                </li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">내용</li>
+                                                                <li class="td">
+                                                                    <textarea style="width: 100%; height: 300px;">
+※ 아래 내용은 포트 1호를 추종하는 고객만을 위한 안내입니다. 포트 1호는 체질이 개선되는 ‘턴어라운드 기업’에 집중 투자하는 전략입니다. 장기적으로 성과가 좋으나, 매월 1회 정해진 날짜에 기계적으로 매매하기 때문에 시기에 따라 월간 수익률 변동성이 매우 클 수 있습니다. 따라서 월간 수익률에 일희일비하지 않고 장기 관점에서 꾸준히 투자할 수 있는 투자자에게만 적합함을 꼭 '유의'하시기 바랍니다.
+
+※ 특징주
+인탑스, 한 달간 14.7%↑
+
+1.png%7C665%2C495%7C20220809181617__0_fd_image_58_229_183_1_2402.png%7CL%7C2%7C
+
+2.png%7C377%2C275%7C20220809181617__1_fd_image_58_229_183_1_1029.png%7CL%7C2%7C
+
+3.png%7C809%2C250%7C20220809181617__2_fd_image_58_229_183_1_5929.png%7CL%7C2%7C
+
+[매매 일정]
+- 이번 매매일: 8월 10일(내일)
+
+[전량매도] - 5종목
+S-Oil, 휴비츠, 원일특강, 제룡산업, 원림
+
+[신규매수] - 5종목
+하이비젼시스템, KG스틸, 피델릭스, CJ, 진양폴리
+
+전량매도한 금액을 신규매수 종목에 고르게 나눠 매수하십시오.
+
+매매가: 8/10(수) 시초가
+(개장 전에 '시장가'로 매매 주문을 넣으면 시초가에 체결됩니다. 개장 이후 매매할 경우 시초가 대비 -3% ~ +3% 사이에 매매하시면 됩니다. )
+
+※ 처음 시작하시는 분
+아래 20개 종목을 각각 투자금의 5%로 내일(10일) 시초가에 매수하시면 됩니다.
+
+[포트 1호 포트폴리오]
+GS, 이건홀딩스, 이구산업, 주성엔지니어링, 루트로닉, 동원산업, 팬스타엔터프라이즈, 한솔로지스틱스,
+이상네트웍스, 한국전자홀딩스, 하이비젼시스템, KG스틸, 바텍, TKG휴켐스, 영원무역홀딩스,
+피델릭스, CJ, 진양폴리, 인탑스, 두산테스나
+
+매매가 끝나면?
+→ 다음 매매일(9/11)까지 보유
+
+감사합니다.
+
+4.png%7C410%2C557%7C20220809181716__0_fd_image_58_229_183_1_9854.png%7CL%7C2%7C
+                                                                        
+                                                                        
+                                                                        
+                                                                        </textarea>
+                                                                </li>
+                                                            </ul>
+                                                        </fieldset>
+                                                    </div>
+                                                    <!-- //fieldset_table -->
+                                                    <div class="btnWrap">
+                                                        <a href="#" class="btn btn_list">목록</a>
+                                                        <a href="#" class="btn btn_del">삭제</a>
+                                                        <a href="#" class="btn btn_formSave">저장</a>
+                                                    </div>
+                                                    <!-- //btnWrap -->
+
+                                                    <br>
+
+                                                    <div class="fieldset_table">
+                                                        <fieldset>
+                                                            <ul>
+                                                                <li class="th">특징주종목명</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 240px;"></li>
+                                                                <li class="th">특징주종목코드</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 140px;"></li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">특징주투자전략</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 100%;"></li>                                                                
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">매수종목코드 ('|'로구분)</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 240px;"></li>
+                                                                <li class="th">매수종목수</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 100px;"></li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">매수종목명<br>('|'로구분)</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 100%;"></li>                                                                
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">매도종목코드 ('|'로구분)</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 240px;"></li>
+                                                                <li class="th">매도종목수</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 100px;"></li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li class="th">매도종목명<br>('|'로구분)</li>
+                                                                <li class="td"><input type="text" value="" name="" class="price" style="width: 100%;"></li>                                                                
+                                                            </ul>
+                                                        </fieldset>
+                                                    </div>
+                                                    <!-- //fieldset_table -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //formWrap  -->
+                                </form>
+                            </div>
+                            <!-- //tabsArea -->
+
+                        </div>
+                        <!-- //left -->
+                    </div>
+                    <!-- //flexArea -->
+                </div>
+                <!-- //superstocks_wrap -->
+            </div>
+            <!-- //sStokes -->
+            <!-- 회원/결제 cms 하드코딩 종료 -->
+        </div>
+        <!-- END MAIN CONTENT -->
+
+    </div>
+    <!-- END MAIN PANEL -->
+    <!-- ==========================CONTENT ENDS HERE ========================== -->
+
+    <div class="page-footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <span class="txt-color-white"></span>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 text-right hidden-xs">
+                <div class="txt-color-white inline-block">
+                    <i class="txt-color-white hidden-mobile" style="padding-right:30px;"><strong></strong> </i>
+                    <i class="txt-color-blueLight hidden-mobile"><strong><span style='font-size:1.7em;'>FN데이터 뷰어</span>
+                            Admin Panel</strong> </i>
+                    <div class="btn-group dropup">
+                        <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
+                            <i class="fa fa-link"></i> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right text-left">
+                            <li class="divider"></li>
+                            <li>
+                                <div class="padding-5">
+                                    <p class="txt-color-darken font-sm no-margin"><a href='/adminpanel'>Home</a></p>
+                                    <p class="txt-color-darken font-sm no-margin"><a
+                                            href='javascript:history.back(1);'>Go to back</a></p>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE FOOTER -->
+
+    <!--================================================== -->
+
+
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script data-pace-options='{ "restartOnRequestAfter": true }'
+        src="/admin_assets/js/plugin/pace/pace.min.js"></script>
+
+    <!-- These scripts will be located in Header So we can add scripts inside body (used in class.datatables.php) -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="/admin_assets/js/libs/jquery-2.0.2.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="/admin_assets/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+			}
+		</script> -->
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+		<script src="/admin_assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+    <!-- BOOTSTRAP JS -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/notification/SmartNotification.min.js"></script>
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/notification/SmartNotification.min.js"></script>
+
+    <!-- JARVIS WIDGETS -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/smartwidgets/jarvis.widget.min.js"></script>
+
+    <!-- EASY PIE CHARTS -->
+    <script
+        src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+    <!-- SPARKLINES -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- JQUERY VALIDATE -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/select2/select2.min.js"></script>
+
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script
+        src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+    <!-- browser msie issue fix -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+    <!-- FastClick: For mobile devices -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/fastclick/fastclick.min.js"></script>
+
+    <!--[if IE 8]>
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+
+    <!-- Demo purpose only -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/demo.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="http://kapi.choicestock.co.kr/admin_assets/js/app.min.js"></script>
+
+    <script type="text/javascript">
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        $(document).ready(function () {
+            pageSetUp();
+        })
+    </script>
+
+    <!-- PAGE RELATED PLUGIN(S) 
+<script src="..."></script>-->
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            // PAGE RELATED SCRIPTS
+        })
+
+    </script>
