@@ -426,30 +426,30 @@
                     </ul>
                 </li>
                 <li><a href="#" title="시스템"><i class="fa fa-lg fa-fw fa-gear"></i> <span
-                    class="menu-item-parent">데이터관리</span></a>
-            <ul>
-                <li>
-                    <a href=""> 데이터등록</a>
+                            class="menu-item-parent">데이터관리</span></a>
+                    <ul>
+                        <li>
+                            <a href=""> 데이터등록</a>
 
-                </li>
-                <li>
-                    <a href=""> 기업개요(K)</a>
+                        </li>
+                        <li>
+                            <a href=""> 기업개요(K)</a>
 
-                </li>
-                <li>
-                    <a href=""> 기업개요(K) - 수정/등록</a>
+                        </li>
+                        <li>
+                            <a href=""> 기업개요(K) - 수정/등록</a>
 
-                </li>
-                <li>
-                    <a href=""> 테마관리</a>
+                        </li>
+                        <li>
+                            <a href=""> 테마관리</a>
 
-                </li>
-                <li>
-                    <a href=""> 테마관리 - 수정/등록</a>
+                        </li>
+                        <li>
+                            <a href=""> 테마관리 - 수정/등록</a>
 
+                        </li>
+                    </ul>
                 </li>
-            </ul>
-        </li>
                 <li><a href="#" title="시스템"><i class="fa fa-lg fa-fw fa-gear"></i> <span
                             class="menu-item-parent">시스템</span></a>
                     <ul>
@@ -511,7 +511,7 @@
             <ol class="breadcrumb">
                 <li><a href="http://kapi.choicestock.co.kr/adminpanel">Home</a></li>
                 <li>데이터관리</li>
-                <li>기업개요K</li>
+                <li>테마관리</li>
             </ol>
             <!-- end breadcrumb -->
         </div>
@@ -532,30 +532,30 @@
                 <div class="superstocks_wrap">
 
                     <div class="row">
-            
+
                         <!-- col -->
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                             <h1 class="page-title txt-color-blueDark">
                                 <!-- PAGE HEADER -->
                                 <i class="fa-fw fa fa-home"></i>
-                                데이터관리 <span>&gt; 기업개요K</span>
+                                데이터관리 <span>&gt; 테마관리</span>
                             </h1>
                         </div>
                         <!-- end col -->
-                        
+
                     </div>
 
                     <form name="sch_form" method="get" action="">
                         <div class="formWrap">
 
                             <div class="sch_box">
-                                
-                                <select name="" style="width: 80px;" class="input_select">                                    
-                                    <option value="">종목코드</option>
-                                    <option value="">종목명</option>
-                                    <option value="">개요</option>                                    
-                                </select>                                
-                                
+
+                                <select name="" style="width: 80px;" class="input_select">
+                                    <option value="">테마명</option>
+                                    <option value="">설명</option>
+                                    <option value="">종목</option>
+                                </select>
+
                                 <div class="searchArea">
                                     <!-- 검색어 자동완성 -->
                                     <input type="text" placeholder="검색어를 입력하세요" class="searchInput">
@@ -596,188 +596,139 @@
                             </div>
                             <!-- //sch_box -->
 
-                            <div class="btnWrap">
-                                <a href="javascript:fnSendSms();" class="btn btn_formSave">신규입력</a>
-                            </div>                            
-                            <br>                            
                             <div class="list_wrap">
+                                <div class="table_filter">
+                                    <div class="status">
+                                        <a href="cms_DataTheme_list_K.html">국내테마(10)</a>
+                                        <a href="cms_DataTheme_list_US.html" class="active">미국테마(20)</a>                                 
+                                    </div>
+                                    <!-- //status -->
+                                    <div class="sort">
+                                        <div class="btnWrap" style="margin-top: 0;">
+                                            <a href="#" class="btn btn_formSave">신규등록</a>
+                                        </div>
+                                    </div>
+                                    <!-- //sort -->
+                                </div>
+                                <!-- //table_filter -->
+
                                 <table cellspacing="0" border="0"
                                     class="ui-jqgrid-htable table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>입력시각</th>
-                                            <th>표출시각</th>                                            
-                                            <th>제목</th>                                            
-                                            <th>보낸곳</th>
-                                            <th>작성자</th>
+                                            <th>아이콘</th>
+                                            <th>테마명</th>                                            
+                                            <th>설명(요약)</th>
+                                            <th>종목</th>
+                                            <th>표출</th>
+                                            <th>최종수정</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글, 현대, 기아, 카카오</td>
+                                            <td>Y</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글</td>
+                                            <td>N</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글, 현대, 기아, 카카오</td>
+                                            <td>Y</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글</td>
+                                            <td>N</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글, 현대, 기아, 카카오</td>
+                                            <td>Y</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글</td>
+                                            <td>N</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글, 현대, 기아, 카카오</td>
+                                            <td>Y</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글</td>
+                                            <td>N</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글, 현대, 기아, 카카오</td>
+                                            <td>Y</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                         <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
-                                        </tr>
-                                        <tr>
-                                            <td>247</td>                                            
-                                            <td>2022.08.09 18:21</td>
-                                            <td>2022.08.09 18:21</td>                                            
-                                            <td><a href="cms_porttrade_view.html">포트 1호, 2022년 8월 매매</a></td>
-                                            <td>민앤지</td>
-                                            <td>데이터히어로</td>
+                                            <td>247</td>
+                                            <td><img src="img/ci_temp.jpg" alt="" style="width: 30px; height: 30px;">
+                                            </td>
+                                            <td><a href="cms_DataTheme_reg.html">자율주행</a></td>
+                                            <td>테슬라로 부터 시작된 자율주행 시장 테슬라로 부터 시작된 자율주행 시장</td>
+                                            <td>테슬라, 구글</td>
+                                            <td>N</td>                                            
+                                            <td>22.8/31 23:34</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                         <!-- //formWrap  -->
                     </form>

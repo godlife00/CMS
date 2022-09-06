@@ -111,6 +111,16 @@ $(document).ready(function () {
                 reader.readAsDataURL(this.files[0]);
             };
         });
+        $(function () {
+            document.getElementById("files02").onchange = function () {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.getElementById("image02").src = e.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            };
+        });
     }
 });
 
