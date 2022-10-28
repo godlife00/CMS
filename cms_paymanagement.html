@@ -716,7 +716,24 @@
                             // 월정기 - 결제취소
                             $('#auto_cacl2').on('click', function () {                                
                                 $('div.modal').removeData().modal({ remote: '_auto_cacl2.html'});
-                            })                            
+                            })   
+                            $('#popbutton3').on('click', function () {                                
+                                $('div.modal').removeData().modal({ remote: '_refund_cacl2.html'});
+                            })      
+                            
+                             // 기간결제 - 결제취소
+                            $('#refund_cacl').on('click', function () {                                
+                                console.log("팝업열기, 리셋");
+                                $('div.modal').removeData().modal({ remote: '_auto_cacl2.html'});
+                            })                         
+                            $('#refund_cacl02').on('click', function () {                                
+                                console.log("팝업열기, 리셋");
+                                $('div.modal').removeData().modal({ remote: '_refund_cacl3.html'});
+                            })                         
+                            $('#refund_cacl03').on('click', function () {                                
+                                console.log("팝업열기, 리셋");
+                                $('div.modal').removeData().modal({ remote: '_refund_cacl4.html'});
+                            })                         
                         });                        
                     });
                 </script>
@@ -746,11 +763,11 @@
                 
                     기간결제 > 사용자 환불요청 팝업
                     <br>
-                    <a href="_auto_cacl2.html" rel="modal:open">월정기 - 결제취소</a>
+                    <a href="#" id="refund_cacl">월정기 - 결제취소</a>
                     <br>
-                    <a href="_refund_cacl3.html" rel="modal:open">기간 - 취소/환불(부분환불1)</a>
+                    <a href="#" id="refund_cacl02">기간 - 취소/환불(부분환불1)</a>
                     <br>
-                    <a href="_refund_cacl4.html" rel="modal:open">기간 - 취소/환불(부분환불2)</a>
+                    <a href="#" id="refund_cacl03">기간 - 취소/환불(부분환불2)</a>
 
                 </div>
             </div>

@@ -547,6 +547,8 @@
                         <div class="formWrap">
                             <!--매수 컨텐츠 입력-->
                             <div class="cont_wrap">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">푸시 입력 가이드 보기</button>
+                                <br><br>
                                 <div class="left">
                                     <div class="box">
                                         <div class="fieldset_table">
@@ -595,8 +597,36 @@
                                                 <ul>
                                                     <li class="th">기업개요</li>
                                                     <li class="td">
-                                                        <textarea
-                                                            style="width: 100%; height: 100px;"></textarea>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">초스US > 푸시 사용법</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="modal-body">
+                                                                            <ul class="list-group">
+                                                                                <li class="list-group-item"><b>키움, 초이스, 한경(유료), 한경(무료) 각각 발송을 원칙으로 함</b></li>
+                                                                                <li class="list-group-item">키움은 *내용에 작성하는 것만 발송됨. 본문내 바로가기 링크 등 금지. <br> <b>본문 시작에 [키움][미주미초이스]와 하단의 유의문구는 자동으로 삽입</b>.
+                                                                                    별도로 넣지 않아도 됨.</li>
+                                                                                <li class="list-group-item">증권사는 로보마켓 > 초스US 회원사에게 발송됨. 앱 푸시 발송으로 최대한 내용 압축해서 발송. 링크 X</li>
+                                                                                <li class="list-group-item">초이스는 초스US 회원 대상 문자로 발송됨. 참고 또는 바로가기 콘텐츠가 있는 경우 URL 삽입 가능. (앱 푸시는 별도 앱 푸시 CMS에서
+                                                                                    발송하고 있음)</li>
+                                                                                <li class="list-group-item">한경(유료) (무료)는 초이스스탁US 문자가 미국주식창으로 자동 대체됨. <br> 앱 푸시 발송으로 본문 글자수 제한은 없으나 단말기 OS에 따라
+                                                                                    노출량은 다름. 링크 URL은 하단의 (한경용) URL 입력란에 넣고, 타겟 링크가 없는 경우엔 공란. 푸시로만 발송.</li>
+                                                                            </ul>
+                                                                    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                        <textarea style="width: 100%; height: 100px;"></textarea>
                                                     </li>
                                                 </ul>
                                                 <ul>
