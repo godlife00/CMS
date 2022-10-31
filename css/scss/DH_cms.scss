@@ -339,6 +339,22 @@ label {
 
                 }
             }
+
+            .btn.fileUplode {
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                border-radius: 3px;
+                font-size: 16px;
+                color: #fff;
+                min-width: 100px;
+                padding: 7px 15px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                vertical-align: middle;
+                background-color: #3276b1;
+                text-decoration: none;
+            }
         }
 
 
