@@ -426,31 +426,6 @@
                     </ul>
                 </li>
                 <li><a href="#" title="시스템"><i class="fa fa-lg fa-fw fa-gear"></i> <span
-                            class="menu-item-parent">데이터관리</span></a>
-                    <ul>
-                        <li>
-                            <a href=""> 데이터등록</a>
-
-                        </li>
-                        <li>
-                            <a href=""> 기업개요(K)</a>
-
-                        </li>
-                        <li>
-                            <a href=""> 기업개요(K) - 수정/등록</a>
-
-                        </li>
-                        <li>
-                            <a href=""> 테마관리</a>
-
-                        </li>
-                        <li>
-                            <a href=""> 테마관리 - 수정/등록</a>
-
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#" title="시스템"><i class="fa fa-lg fa-fw fa-gear"></i> <span
                             class="menu-item-parent">시스템</span></a>
                     <ul>
                         <li>
@@ -510,8 +485,8 @@
             <!-- breadcrumb -->
             <ol class="breadcrumb">
                 <li><a href="http://kapi.choicestock.co.kr/adminpanel">Home</a></li>
-                <li>데이터관리</li>
-                <li>기업개요K</li>
+                <li>퀀트 시그널</li>
+                <li>성과표시 테이블</li>
             </ol>
             <!-- end breadcrumb -->
         </div>
@@ -519,7 +494,7 @@
 
         <!-- MAIN CONTENT -->
         <div id="content">
-            <!-- 회원/결제 cms 하드코딩 시작 -->
+            <!-- 성과표시 테이블 cms 하드코딩 시작 -->
             <div class="sStokes cmsWrap">
                 <link rel="stylesheet" type="text/css" href="css/DH_cms.css" />
                 <!-- cms css -->
@@ -532,151 +507,296 @@
                 <div class="superstocks_wrap">
 
                     <div class="row">
+            
                         <!-- col -->
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                             <h1 class="page-title txt-color-blueDark">
                                 <!-- PAGE HEADER -->
                                 <i class="fa-fw fa fa-home"></i>
-                                데이터관리 <span>&gt; 기업개요K 수정/등록
-                                </span>
+                                퀀트시그널 <span>&gt; 성과표시 테이블</span>
                             </h1>
                         </div>
                         <!-- end col -->
-                    </div>                                
-                    <form name="ss_wform" method="post" action="">
+                        
+                    </div>
+
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>■ 기간수익률 = 가장 최근날짜 기준 누적수익률</li>
+                                <li>■ 연환산변동성 = STDEV(V7:V270)*SQRT(12) => n = (가장최근날짜-첫번째날짜)/365</li>
+                                <li>■ 수익횟수 = 월별 수익률중 &gt; 0 인 것의 갯수</li>
+                                <li>■ 연환산수익률 = (가장 최근날짜 기준 기준가/첫번째 날짜기준가)^(1/n)-1</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li>■ 최대낙폭 =min(Z7:Z12)</li>
+                                <li>■ 승률 = 수익횟수/전체 갯수</li>
+                                <li>■ 샤프비율 = 연환산수익률/연환산변동성</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <form name="sch_form" method="get" action="">
                         <div class="formWrap">
-                            <!--매수 컨텐츠 입력-->
-                            <div class="cont_wrap">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">푸시 입력 가이드 보기</button>
-                                <br><br>
-                                <div class="left">
-                                    <div class="box">
-                                        <div class="fieldset_table">
-                                            <fieldset>
-                                                <ul>
-                                                    <li class="th">NO</li>
-                                                    <li class="td">
-                                                        123123
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">최종수정</li>
-                                                    <li class="td">
-                                                        2021. 08/21. 04:24:34 (서민희)
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">마켓</li>
-                                                    <li class="td">
-                                                        <label>
-                                                            <input type="radio" name="fdss_mmtype" checked>
-                                                            국내
-                                                        </label>
-                                                        <label>
-                                                            <input type="radio" name="fdss_mmtype">
-                                                            미국
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">종목코드(티커)</li>
-                                                    <li class="td">
-                                                        035720
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">종목명</li>
-                                                    <li class="td">
-                                                        카카오네이버삼성LG
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">종목명(미국주식-한글)</li>
-                                                    <li class="td"><input type="text" value="" name="" class="price"></li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">기업개요</li>
-                                                    <li class="td">
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">초스US > 푸시 사용법</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <ul class="list-group">
-                                                                            <li class="list-group-item">전체무료(마수신동의) 발송시 내용 하단에 무료거부 번호와 인증번호 입력 후 발송. <br> <b>무료거부 080-810-0141 인증 890194</b></li>
-                                                                            <li class="list-group-item">인플 무료(마수신동의) 발송시 무료 거부 번호와 인증번호 입력 후 발송. <br> <b>무료거부 080-810-0141 인증 780157</b></li>
-                                                                            <li class="list-group-item"><b>키움, 초이스, 한경(유료), 한경(무료), 인플(유료), 인플(무료) 각각 발송을 원칙으로 함</b></li>
-                                                                            <li class="list-group-item">키움은 본문내 바로가기 링크 등 금지. <br> <b>본문 시작에 [키움][미주미초이스]와 하단의 유의문구는 자동으로 삽입</b>.별도로 넣지 않아도 됨.</li>
-                                                                            <li class="list-group-item">증권사는 로보마켓 &gt; 초스US 회원사에게 발송됨. 앱 푸시 발송으로 최대한 내용 압축해서 발송. 링크 X</li>
-                                                                            <li class="list-group-item">초이스는 초스US 회원 대상 문자로 발송됨. 참고 또는 바로가기 콘텐츠가 있는 경우 URL 삽입 가능. (앱 푸시는 별도 앱 푸시 CMS에서 발송하고 있음)</li>
-                                                                            <li class="list-group-item">한경(유료) (무료)는 초이스스탁US 문자가 미국주식창으로 자동 대체됨. <br> 앱 푸시 발송으로 본문 글자수 제한은 없으나 단말기 OS에 따라 노출량은 다름. 링크 URL은 하단의 (한경용) URL 입력란에 넣고, 타겟 링크가 없는 경우엔 공란. 푸시로만 발송.</li>
-                                                                        </ul>
-                                                                    </div>
 
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">인베스팅 플러스 > 푸시 사용법</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="modal-body">
-                                                                            <ul class="list-group">
-                                                                                <li class="list-group-item">인베스팅 플러스 (유료) 발송시 전화번호 :  <b>02-6225-3306</b></li>                                                                                
-                                                                                <li class="list-group-item">인베스팅 플러스 (무료_마케팅수신동의) 발송시 전화번호 : <b>02-6225-3307</b></li>                                                                                
-                                                                                <li class="list-group-item">인베스팅 플러스 (무료_마케팅수신동의) 발송시 전화번호 : <b>02-6225-3307</b> <br>  <u>무료 문자의 경우 하단에 무료거부 0808100141과 인증번호 780157 입력후 발송. <br> 정보가 아닌 100% 광고 목적 문자는 제목에 (광고)도 추가해서 발송.</u></li>
-                                                                            </ul>
-                                                                    
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>                                                        
-                                                        <textarea style="width: 100%; height: 100px;"></textarea>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">종목 CI</li>
-                                                    <li class="td">                                                                                                                                                                                                                                    
-                                                        <input type="file" id="files" /> <br> *아이콘 (250 x 250 px)
-                                                        <img class="comlogo" id="image" />
-                                                        
-                                                    </li>
-                                                </ul>  
-                                                <ul>
-                                                    <li class="th">구분</li>
-                                                    <li class="td">
-                                                        상장
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li class="th">연결된 테마</li>
-                                                    <li class="td">
-                                                        <a href="">#기술주</a>, <a href="">#소셜커머스</a>, <a href="">#기술주</a>
-                                                    </li>
-                                                </ul>
-                                            </fieldset>
-                                        </div>
-                                        <!-- //fieldset_table -->
-                                        <div class="btnWrap">
-                                            <a href="#" class="btn btn_del">취소</a>                                                                                            
-                                            <a href="#" class="btn btn_formSave">확인/저장</a>
-                                        </div>
-                                        <!-- //btnWrap -->
-
+                            <div class="sch_box">
+                                <div class="radio_group">
+                                    <label>
+                                        <input type="radio" name="cktype" checked>전체
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="cktype">기간
+                                    </label>
+                                    <label>
+                                        <input type="text" class="input_txt" autocomplete="off" id="datepicker1"
+                                            style="width: 100px"> ~ <input type="text" class="input_txt"
+                                            autocomplete="off" id="datepicker2" style="width: 100px">
+                                    </label>
+                                    <a href="#" class="btn_sch">검색</a>
+                                </div>                                        
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <select name="" style="width: 80px;" class="input_select">                                    
+                                    <option value="">전체</option>
+                                    <option value="">제목</option>
+                                    <option value="">작성자</option>                                    
+                                </select>                                
+                                
+                                <div class="searchArea">
+                                    <!-- 검색어 자동완성 -->
+                                    <input type="text" placeholder="검색어를 입력하세요" class="searchInput">
+                                    <a href="#" class="btn_sch">검색</a>
+                                    <div class="sch_autocomplete">
+                                        <!--<div class="AutoComplete">-->
+                                        <!-- //자동완성 결과 노출 class : _show -->
+                                        <ul id="autocomplete_list">
+                                            <li class="_on">
+                                                <a href="#" class="_on">
+                                                    <span class="schList">01012345678</span>
+                                                </a>
+                                            </li>
+                                            <li class="_on">
+                                                <a href="#" class="_on">
+                                                    <span class="schList">홍길동</span>
+                                                </a>
+                                            </li>
+                                            <li class="_on">
+                                                <a href="#" class="_on">
+                                                    <span class="schList">홍두께</span>
+                                                </a>
+                                            </li>
+                                            <li class="_on">
+                                                <a href="#" class="_on">
+                                                    <span class="schList">team@naver.com</span>
+                                                </a>
+                                            </li>
+                                            <li class="_on">
+                                                <a href="#" class="_on">
+                                                    <span class="schList">team004574@datahero.co.kr</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
+                                <!-- //searchArea -->
                             </div>
+                            <!-- //sch_box -->
+                            
+                            <div class="list_wrap">
+                                
+                                <table cellspacing="0" border="0" class="ui-jqgrid-htable table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>날짜</th>
+                                            <th>종목1</th>
+                                            <th>종목2</th>
+                                            <th>종목3</th>
+                                            <th>종목4</th>
+                                            <th>종목5</th>
+                                            <th>종목6</th>
+                                            <th>종목7</th>
+                                            <th>종목8</th>
+                                            <th>종목9</th>
+                                            <th>종목10</th>
+                                            <th>종목11</th>
+                                            <th>종목12</th>
+                                            <th>종목13</th>
+                                            <th>종목14</th>
+                                            <th>종목15</th>
+                                            <th>종목16</th>
+                                            <th>종목17</th>
+                                            <th>종목18</th>
+                                            <th>종목19</th>
+                                            <th>종목20</th>
+                                            <th>월별 수익률</th>
+                                            <th>기준가</th>
+                                            <th>누적수익률</th>
+                                            <th>최대값</th>
+                                            <th>최대손실</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>20/1/1</td>
+                                            <td>7.10%</td>
+                                            <td>7.07%</td>
+                                            <td>-10.63%</td>
+                                            <td>28.05%</td>
+                                            <td>1.03%</td>
+                                            <td>2.31%</td>
+                                            <td>4.79%</td>
+                                            <td>34.19%</td>
+                                            <td>8.88%</td>
+                                            <td>0.85%</td>
+                                            <td>-6.65%</td>
+                                            <td>2.43%</td>
+                                            <td>0.90%</td>
+                                            <td>-8.39%</td>
+                                            <td>1.89%</td>
+                                            <td>13.97%</td>
+                                            <td>4.62%</td>
+                                            <td>5.65%</td>
+                                            <td>-17.93%</td>
+                                            <td>8.03%</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>0.00%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20/1/1</td>
+                                            <td>7.10%</td>
+                                            <td>7.07%</td>
+                                            <td>-10.63%</td>
+                                            <td>28.05%</td>
+                                            <td>1.03%</td>
+                                            <td>2.31%</td>
+                                            <td>4.79%</td>
+                                            <td>34.19%</td>
+                                            <td>8.88%</td>
+                                            <td>0.85%</td>
+                                            <td>-6.65%</td>
+                                            <td>2.43%</td>
+                                            <td>0.90%</td>
+                                            <td>-8.39%</td>
+                                            <td>1.89%</td>
+                                            <td>13.97%</td>
+                                            <td>4.62%</td>
+                                            <td>5.65%</td>
+                                            <td>-17.93%</td>
+                                            <td>8.03%</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>0.00%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20/1/1</td>
+                                            <td>7.10%</td>
+                                            <td>7.07%</td>
+                                            <td>-10.63%</td>
+                                            <td>28.05%</td>
+                                            <td>1.03%</td>
+                                            <td>2.31%</td>
+                                            <td>4.79%</td>
+                                            <td>34.19%</td>
+                                            <td>8.88%</td>
+                                            <td>0.85%</td>
+                                            <td>-6.65%</td>
+                                            <td>2.43%</td>
+                                            <td>0.90%</td>
+                                            <td>-8.39%</td>
+                                            <td>1.89%</td>
+                                            <td>13.97%</td>
+                                            <td>4.62%</td>
+                                            <td>5.65%</td>
+                                            <td>-17.93%</td>
+                                            <td>8.03%</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>0.00%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20/1/1</td>
+                                            <td>7.10%</td>
+                                            <td>7.07%</td>
+                                            <td>-10.63%</td>
+                                            <td>28.05%</td>
+                                            <td>1.03%</td>
+                                            <td>2.31%</td>
+                                            <td>4.79%</td>
+                                            <td>34.19%</td>
+                                            <td>8.88%</td>
+                                            <td>0.85%</td>
+                                            <td>-6.65%</td>
+                                            <td>2.43%</td>
+                                            <td>0.90%</td>
+                                            <td>-8.39%</td>
+                                            <td>1.89%</td>
+                                            <td>13.97%</td>
+                                            <td>4.62%</td>
+                                            <td>5.65%</td>
+                                            <td>-17.93%</td>
+                                            <td>8.03%</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>4.41%</td>
+                                            <td>1044.08</td>
+                                            <td>0.00%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                         <!-- //formWrap  -->
                     </form>
+                </div>
+
+                <div class="paginate">
+                    <a href="#" class="cb_pre">&#171;</a>
+                    <a href="#" class="cb_pre">&#60;</a>
+                    <strong>1</strong>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#" class="cb_next">&#62;</a>
+                    <a href="#" class="cb_next">&#187;</a>
                 </div>
 
                 <!-- ajax 모달 팝업 실행 -->
