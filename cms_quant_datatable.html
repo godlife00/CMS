@@ -592,26 +592,86 @@
                                                 <input type="text" id="min07" placeholder="from" />
                                                 <input type="text" id="max07" placeholder="to" />
                                             </th>
-                                            <th>grossmargin</th>
-                                            <th>opmargin</th>
-                                            <th>netmargin</th>
-                                            <th>rndratio</th>
-                                            <th>borrowtoassets</th>
-                                            <th>netincgrqoq</th>
-                                            <th>netincgr</th>
-                                            <th>opincgrqoq</th>
-                                            <th>opinqgr</th>
-                                            <th>gpgrqoq</th>
-                                            <th>gpgr</th>
-                                            <th>revenuegrqoq</th>
-                                            <th>revenuegr</th>
-                                            <th>assetsgrqoq</th>
-                                            <th>equitygrqoq</th>
-                                            <th>equitygr</th>
-                                            <th>ncfogrqoq</th>
-                                            <th>ncfogr</th>
-                                            <th>debtgrqoq</th>
-                                            <th>debtgr</th>
+                                            <th>
+                                                <input type="text" id="min08" placeholder="from" />
+                                                <input type="text" id="max08" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min09" placeholder="from" />
+                                                <input type="text" id="max09" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min10" placeholder="from" />
+                                                <input type="text" id="max10" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min11" placeholder="from" />
+                                                <input type="text" id="max11" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min12" placeholder="from" />
+                                                <input type="text" id="max12" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min13" placeholder="from" />
+                                                <input type="text" id="max13" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min14" placeholder="from" />
+                                                <input type="text" id="max14" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min15" placeholder="from" />
+                                                <input type="text" id="max15" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min16" placeholder="from" />
+                                                <input type="text" id="max16" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min17" placeholder="from" />
+                                                <input type="text" id="max17" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min18" placeholder="from" />
+                                                <input type="text" id="max18" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min19" placeholder="from" />
+                                                <input type="text" id="max19" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min20" placeholder="from" />
+                                                <input type="text" id="max20" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min21" placeholder="from" />
+                                                <input type="text" id="max21" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min22" placeholder="from" />
+                                                <input type="text" id="max22" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min23" placeholder="from" />
+                                                <input type="text" id="max23" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min24" placeholder="from" />
+                                                <input type="text" id="max24" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min25" placeholder="from" />
+                                                <input type="text" id="max25" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min26" placeholder="from" />
+                                                <input type="text" id="max26" placeholder="to" />
+                                            </th>
+                                            <th>
+                                                <input type="text" id="min27" placeholder="from" />
+                                                <input type="text" id="max27" placeholder="to" />
+                                            </th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -4999,38 +5059,33 @@
 
                                 </table>
 
+                                
+
                                 <script>
                                     $(document).ready(function () {
-                                        // Define an array of objects that contains the IDs for the inputs and columns
-                                        var inputs = [
-                                            { inputId: 'min02', column: 2 },
-                                            { inputId: 'max02', column: 2 },
-                                            { inputId: 'min03', column: 3 },
-                                            { inputId: 'max03', column: 3 },
-                                            { inputId: 'min04', column: 4 },
-                                            { inputId: 'max04', column: 4 },
-                                            { inputId: 'min05', column: 5 },
-                                            { inputId: 'max05', column: 5 },
-                                            { inputId: 'min06', column: 6 },
-                                            { inputId: 'max06', column: 6 },
-                                            { inputId: 'min07', column: 7 },
-                                            { inputId: 'max07', column: 7 },
-                                        ];
-
-                                        // Custom range filtering function
+                                        
+                                        //테이블 th 항목별로 최소, 최대값 필터링
+                                        var inputs = [];
+                                        for (var i = 2; i <= 27; i++) {
+                                            inputs.push({
+                                                inputId: 'min' + ('0' + i).slice(-2),
+                                                column: i
+                                            });
+                                            inputs.push({
+                                                inputId: 'max' + ('0' + i).slice(-2),
+                                                column: i
+                                            });
+                                        }                                                                                
                                         $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
                                             var pass = true;
-
                                             // Loop over the inputs array and check if the data falls within the range
                                             for (var i = 0; i < inputs.length; i += 2) {
                                                 var min = parseInt($('#' + inputs[i].inputId).val(), 10);
                                                 var max = parseInt($('#' + inputs[i + 1].inputId).val(), 10);
                                                 var val = parseFloat(data[inputs[i].column]) || 0;
-
                                                 if (!isNaN(min) && val < min) {
                                                     pass = false;
                                                 }
-
                                                 if (!isNaN(max) && val > max) {
                                                     pass = false;
                                                 }
@@ -5038,6 +5093,7 @@
                                             return pass;
                                         });
 
+                                        //테이블 디자인 플러그인
                                         var table = $('#quant_datatable').DataTable({
                                             stateSave: true, // 지금 화면 저장
                                             pagingType: 'full_numbers',
@@ -5055,9 +5111,9 @@
                                                 }
                                             },
                                             lengthMenu: [
-                                                [10, 25, 50, -1],
-                                                [10, 25, 50, '전체'],
-                                            ],                                            
+                                                [25, 50, 100, -1],
+                                                [25, 50, 100, '전체'],
+                                            ],
                                         });
 
                                         // Changes to the inputs will trigger a redraw to update the table
@@ -5067,10 +5123,9 @@
                                             });
                                         }
                                     });
-
-
                                 </script>
 
+                                <!-- 테이블 디자인 css -->
                                 <style>
                                     .dataTables_scrollBody {
                                         max-height: 600px;
