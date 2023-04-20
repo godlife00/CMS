@@ -527,7 +527,10 @@
                                 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
                                 <script type="text/javascript" src="//cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 
-                                <table id="quant_datatable" class="table table-striped table-bordered dataTable" style="width:100%">
+                                
+                                <button class="btn btn-primary table_resetBtn">저장 정보 삭제</button>
+                                <br><br>                                
+                                <table id="quant_datatable" class="table table-striped table-bordered dataTable" style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -573,8 +576,8 @@
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        <th><input type="text"/></th>
-                                        <th><input type="text"/></th>
+                                        <th></th>
+                                        <th><input type="text" id="tk_sch" placeholder="티커검색" /></th>
                                         <th>
                                             <input type="text" id="min02" placeholder="from" />
                                             <input type="text" id="max02" placeholder="to" />
@@ -675,15 +678,66 @@
                                             <input type="text" id="min26" placeholder="from" />
                                             <input type="text" id="max26" placeholder="to" />
                                         </th>                                        
-                                    </tfoot>                                
-
+                                        <th>
+                                            <input type="text" id="min27" placeholder="from" />
+                                            <input type="text" id="max27" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min28" placeholder="from" />
+                                            <input type="text" id="max28" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min29" placeholder="from" />
+                                            <input type="text" id="max29" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min30" placeholder="from" />
+                                            <input type="text" id="max30" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min31" placeholder="from" />
+                                            <input type="text" id="max31" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min32" placeholder="from" />
+                                            <input type="text" id="max32" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min33" placeholder="from" />
+                                            <input type="text" id="max33" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min34" placeholder="from" />
+                                            <input type="text" id="max34" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min35" placeholder="from" />
+                                            <input type="text" id="max35" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min36" placeholder="from" />
+                                            <input type="text" id="max36" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min37" placeholder="from" />
+                                            <input type="text" id="max37" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min38" placeholder="from" />
+                                            <input type="text" id="max38" placeholder="to" />
+                                        </th>                                        
+                                        <th>
+                                            <input type="text" id="min39" placeholder="from" />
+                                            <input type="text" id="max39" placeholder="to" />
+                                        </th>                                        
+                                    </tfoot>                               
                                 </table>
 
                                 <script>
                                     $(document).ready(function () {                                        
                                         //테이블 th 항목별로 최소, 최대값 필터링
                                         var inputs = [];
-                                        for (var i = 2; i <= 27; i++) {
+                                        for (var i = 2; i <= 39; i++) {
                                             inputs.push({
                                                 inputId: 'min' + ('0' + i).slice(-2),
                                                 column: i
@@ -712,17 +766,13 @@
 
                                         //테이블 디자인 플러그인
                                         var table = $('#quant_datatable').DataTable({                                            
-                                            processing: true, //처리 중 로딩처리
-                                            ordering: true, //기본 정렬 사용여부
-                                            searching: true, //전체 검색바
-                                            serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의
-
                                             ajax: 'ajax/data/server_processing.php',                                                   
 
-                                            stateSave: true, // 지금 화면 저장
-                                            pagingType: 'full_numbers',
-                                            scrollY: '100%',
-                                            scrollX: true,                                            
+                                            processing: true, //처리 중 로딩처리
+                                            ordering: true, //기본 정렬 사용여부
+                                            searching: false, //전체 검색바
+                                            serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의
+                                            pagingType: 'full_numbers',               
                                             language: {
                                                 decimal: ',',
                                                 thousands: '.',
@@ -732,9 +782,10 @@
                                                 }
                                             },
                                             lengthMenu: [
-                                                [5, 25, 50, 100, -1],
-                                                [5, 25, 50, 100, '전체'],
+                                                [25, 50, 100, -1],
+                                                [25, 50, 100, '전체'],
                                             ],
+                                            stateSave: true, // 지금 화면 저장             
                                         });
 
                                         // Changes to the inputs will trigger a redraw to update the table
@@ -743,11 +794,49 @@
                                                 table.draw();
                                             });
                                         }
+                                        // DataTable 객체의 state.clear() 메소드를 호출하여 저장된 상태 정보를 삭제.
+                                        $('.table_resetBtn').on('click', function() {                                          
+                                            table.state.clear();
+                                        });
                                     });
                                 </script>
 
                                 <!-- 테이블 디자인 css -->
-                                <style>
+                                <style>                                                 
+                                    #quant_datatable thead {
+                                        position: sticky;
+                                        top: 0;
+                                        z-index: 999;
+                                    }
+                                    #quant_datatable thead th {
+                                        background-color: #60747c;
+                                    }
+                                    table.dataTable tfoot>tr>th {
+                                        background-color: #ededed;                                        
+                                    }
+                                    table.table-bordered.dataTable tbody tr.odd td {                                        
+                                        background-color: #fff;
+                                    }
+                                    table.table-bordered.dataTable tbody tr.even td {                                        
+                                        background-color: #ededed;                                        
+                                    }                                    
+                                    #quant_datatable thead th:nth-child(2),
+                                    table.table-bordered.dataTable tbody td:nth-child(2),
+                                    table.dataTable tfoot>tr>th:nth-child(2){
+                                        position: sticky;
+                                        left: 0;
+                                        z-index: 999;
+                                        border-right: 2px solid #c8c8c8;
+                                    }                                    
+                                    table.table-bordered.dataTable tbody td:nth-child(2) {
+                                        z-index: 998;                                        
+                                    }
+                                    #quant_datatable tfoot {
+                                        position: sticky;                                        
+                                        top: 35px;
+                                        background-color: #ededed;                                                                                
+                                        z-index: 999;
+                                    }
                                     .dataTables_scrollBody {
                                         max-height: 600px;
                                         overflow-y: auto;
