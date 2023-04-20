@@ -521,7 +521,7 @@
                     </div>
 
                     <form name="sch_form" method="get" action="">
-                        <div class="formWrap"  style="width: 100%; overflow: auto; max-height: 800px;">
+                        <div class="formWrap">
 
                             <div class="list_wrap">
                                 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
@@ -721,8 +721,8 @@
 
                                             stateSave: true, // 지금 화면 저장
                                             pagingType: 'full_numbers',
-                                            // scrollY: '100%',
-                                            // scrollX: true,                                            
+                                            scrollY: '100%',
+                                            scrollX: true,                                            
                                             language: {
                                                 decimal: ',',
                                                 thousands: '.',
@@ -771,7 +771,7 @@
                                         min-width: 50px;
                                         height: 25px;
                                     }
-
+                                    
                                     .dataTables_wrapper .dataTables_length select,
                                     .dataTables_wrapper .dataTables_filter input {
                                         background-color: #fff;
