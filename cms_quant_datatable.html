@@ -499,10 +499,7 @@
                 <!-- <link rel="stylesheet" type="text/css" href="css/DH_cms.css" /> -->
                 <!-- cms css -->
                 <!-- <script src="js/DH_cms.js"></script> -->
-                <!-- cms js -->
-                <!-- jQuery Modal -->
-                <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /> -->
+                <!-- cms js -->                
 
                 <div class="superstocks_wrap">
 
@@ -526,10 +523,16 @@
                             <div class="list_wrap">
                                 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
                                 <script type="text/javascript" src="//cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
-
+                                <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+                                <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>                                
+                                <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
                                 
-                                <button class="btn btn-primary table_resetBtn">저장 정보 삭제</button>
-                                <br><br>                                
+
+                                <div id="myTable_filter">
+                                    <!-- 날짜 검색 필터 -->
+                                </div>
+                                <br>
+                                <button class="btn btn-primary table_resetBtn" style="position: absolute; left: 138px; top: 137px;">검색 초기화</button>                                
                                 <table id="quant_datatable" class="table table-striped table-bordered dataTable" style="width:100%;">
                                     <thead>
                                         <tr>
@@ -577,7 +580,7 @@
                                     </thead>
                                     <tfoot>
                                         <th></th>
-                                        <th><input type="text" id="tk_sch" placeholder="티커검색" /></th>
+                                        <th><input type="text" id="tickerSearch" placeholder="티커검색" /></th>
                                         <th>
                                             <input type="text" id="min02" placeholder="from" />
                                             <input type="text" id="max02" placeholder="to" />
@@ -734,8 +737,34 @@
                                 </table>
 
                                 <script>
-                                    $(document).ready(function () {                                        
-                                        //테이블 th 항목별로 최소, 최대값 필터링
+                                    $(document).ready(function () {         
+                                        
+                                        
+                                        // 날짜 검색 부분 시작
+                                        $('#myTable_filter').prepend('<input type="text" id="toDate" placeholder="yyyy-MM-dd">');
+                                        $('#myTable_filter').prepend('<input type="text" id="fromDate" placeholder="yyyy-MM-dd"> ~ ');
+                                        $.fn.dataTable.ext.search.push(
+                                            function(settings, data, dataIndex){
+                                                var min = Date.parse($('#fromDate').val());
+                                                var max = Date.parse($('#toDate').val());
+                                                var targetDate = Date.parse(data[5]);
+                                        
+                                                if( (isNaN(min) && isNaN(max) ) || 
+                                                    (isNaN(min) && targetDate <= max )|| 
+                                                    ( min <= targetDate && isNaN(max) ) ||
+                                                    ( targetDate >= min && targetDate <= max) ){ 
+                                                        return true;
+                                                }
+                                                return false;
+                                            }
+                                        );                                               
+                                        $('#toDate, #fromDate').unbind().bind('keyup',function(){
+                                            table.draw();
+                                        })
+                                        // 날짜 검색 부분 end
+                                        
+
+                                        // 테이블 th 항목별로 최소, 최대값 필터링
                                         var inputs = [];
                                         for (var i = 2; i <= 39; i++) {
                                             inputs.push({
@@ -763,41 +792,80 @@
                                             }
                                             return pass;
                                         });
+                                        // 테이블 th 항목별로 최소, 최대값 필터링 end
 
-                                        //테이블 디자인 플러그인
-                                        var table = $('#quant_datatable').DataTable({                                            
-                                            ajax: 'ajax/data/server_processing.php',                                                   
+                                        // 테이블 디자인 플러그인
+                                        var table = $('#quant_datatable').DataTable({          
+                                            // 엑셀 다운로드 버튼                                            
+                                            dom: 'Bfrtip',
+                                            buttons: [{
+                                                extend: 'excel',
+                                                text: '엑셀 다운로드',
+                                                footer: true,
+                                                className: 'btn btn-success',
+                                                charset: 'utf-8' // 엑셀 파일 인코딩 설정
+                                            }],
+                                            // 엑셀 다운로드 버튼 end
 
+                                            ajax: 'ajax/data/server_processing.php',                 
+                                            serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의    
+                                            scrollY: "100%",
+                                            scrollx: true,
+                                            scrollCollapse: true,
                                             processing: true, //처리 중 로딩처리
                                             ordering: true, //기본 정렬 사용여부
-                                            searching: false, //전체 검색바
-                                            serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의
+                                            searching: true, //전체 검색바
                                             pagingType: 'full_numbers',               
                                             language: {
-                                                decimal: ',',
-                                                thousands: '.',
-                                                paginate: {
-                                                    first: '처음',
-                                                    last: '마지막'
-                                                }
+                                                "emptyTable": "데이터가 없어요.",
+                                                "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+                                                "info": "현재 _START_ - _END_ / _TOTAL_건",
+                                                "infoEmpty": "데이터 없음",
+                                                "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+                                                "search": "전체 데이터 검색: ",
+                                                "zeroRecords": "일치하는 데이터가 없어요.",
+                                                "loadingRecords": "로딩중...",
+                                                "processing":     "잠시만 기다려 주세요...",
+                                                "paginate": {
+                                                    "next": "다음",
+                                                    "previous": "이전",
+                                                    "first": '처음',
+                                                    "last": '마지막'
+                                                },
                                             },
                                             lengthMenu: [
                                                 [25, 50, 100, -1],
                                                 [25, 50, 100, '전체'],
                                             ],
-                                            stateSave: true, // 지금 화면 저장             
+                                            stateSave: true, // 지금 화면 저장    
+                                            // 테이블 디자인 플러그인 end         
                                         });
-
-                                        // Changes to the inputs will trigger a redraw to update the table
+                                        
+                                        // 각 테이블 column별 최소,최대값 입력 인풋 코드
                                         for (var i = 0; i < inputs.length; i++) {
                                             $('#' + inputs[i].inputId).on('input', function () {
                                                 table.draw();
                                             });
-                                        }
-                                        // DataTable 객체의 state.clear() 메소드를 호출하여 저장된 상태 정보를 삭제.
+                                        }      
+                                        // 각 테이블 column별 최소,최대값 입력 인풋 코드 end                     
+
+                                        // 검색 초기화 설정 
                                         $('.table_resetBtn').on('click', function() {                                          
+                                            // DataTable 객체의 state.clear() 메소드를 호출하여 저장된 상태 정보를 삭제.
                                             table.state.clear();
+                                        });                                        
+                                        setTimeout(function() {                                            
+                                            // 10분(600,000 밀리초) 후에 로컬 스토리지에서 저장된 데이터를 삭제합니다.
+                                            table.state.clear();
+                                        }, 600000);
+                                        // 검색 초기화 설정 end
+
+                                        // 티커 검색어 입력 코드
+                                        $('#tickerSearch').on('keyup', function() {
+                                            var keyword = $(this).val().trim();
+                                            table.column(1).search(keyword).draw();
                                         });
+                                        // 티커 검색어 입력 코드 end
                                     });
                                 </script>
 
@@ -837,8 +905,8 @@
                                         background-color: #ededed;                                                                                
                                         z-index: 999;
                                     }
-                                    .dataTables_scrollBody {
-                                        max-height: 600px;
+                                    .dataTables_scrollBody {                                        
+                                        max-height: 600px !important;
                                         overflow-y: auto;
                                     }
                                     table.dataTable thead .sorting_asc:after {
