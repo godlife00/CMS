@@ -112,9 +112,7 @@
         <div id="logo-group">
 
             <!-- PLACE YOUR LOGO HERE -->
-            <span id="logo"> <a href="/adminpanel"><img
-                        src="http://kapi.choicestock.co.kr/admin_assets/img/logo-admin.png" alt="FN데이터 뷰어"
-                        style="width:150px;"></a> </span>
+            <span id="logo"> <a href="/adminpanel"><img src="http://kapi.choicestock.co.kr/admin_assets/img/logo-admin.png" alt="FN데이터 뷰어" style="width:150px;"></a> </span>
             <!-- END LOGO PLACEHOLDER -->
 
             <!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -474,7 +472,6 @@
 
         <!-- RIBBON -->
         <div id="ribbon">
-
             <span class="ribbon-button-alignment">
                 <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip"
                     data-placement="bottom"
@@ -519,7 +516,6 @@
 
                     <form name="sch_form" method="get" action="">
                         <div class="formWrap">
-
                             <div class="sch_box">
                                 <div class="radio_group">
                                     <label>
@@ -531,22 +527,24 @@
                                     <label>
                                         <input type="text" class="input_txt" autocomplete="off" id="datepicker1" style="width: 100px">
                                          ~ 
-                                        <input type="text" class="input_txt" autocomplete="off" id="datepicker2" style="width: 100px">
+                                         <input type="text" class="input_txt" autocomplete="off" id="datepicker2" style="width: 100px">
                                     </label>
                                     <a href="#" class="btn_sch">검색</a>
-                                </div>                                        
+                                </div>   
                             </div>
-                            <!-- //sch_box -->
 
+                            
                             <div class="list_wrap">
                                 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
                                 <script type="text/javascript" src="//cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
                                 <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
                                 <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>                                
-                                <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
+                                <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>                                
                                 
+                                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">                                                                
+                                <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>         
+
                                 
-                                <br>
                                 <table id="quant_datatable" class="table table-striped table-bordered dataTable" style="width:100%;">
                                     <thead>
                                         <tr>
@@ -753,6 +751,26 @@
                                 <script>
                                     $(document).ready(function () {   
                                         
+                                        //input을 datepicker로 선언
+                                        $("#datepicker1, #datepicker2").datepicker({      
+                                            format: 'yyyy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+                                            startDate: '-20y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+                                            endDate: '+10d', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+                                            autoclose: true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+                                            calendarWeeks: true, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
+                                            clearBtn: true, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true                                                                                        
+                                            daysOfWeekHighlighted: [0], //강조 되어야 하는 요일 설정                                            
+                                            orientation: 'bottom',                                            
+                                            templates: {
+                                                leftArrow: '&laquo;',
+                                                rightArrow: '&raquo;',
+                                            }, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징                                            
+                                            todayHighlight: true, //오늘 날짜에 하이라이팅 기능 기본값 :false                                            
+                                            weekStart: 1, //달력 시작 요일 선택하는 것 기본값은 0인 일요일                                            
+                                        });
+                                        //초기값을 오늘 날짜로 설정해줘야 합니다.
+                                        $('#datepicker1, #datepicker2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+                                        
                                         // 테이블 th 항목별로 최소, 최대값 필터링
                                         var inputs = [];
                                         for (var i = 2; i <= 39; i++) {
@@ -764,8 +782,7 @@
                                                 inputId: 'max' + ('0' + i).slice(-2),
                                                 column: i
                                             });
-                                        }        
-                                                                                                                
+                                        }                                                                       
                                         $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
                                             var pass = true;
                                             // Loop over the inputs array and check if the data falls within the range
@@ -824,6 +841,9 @@
                                             serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의    
                                             // 테이블 데이터 불러오기 end
                                             
+                                            
+                                            scrollX: true,
+                                            scrollY: "100%",
                                             processing: true, //처리 중 로딩처리
                                             ordering: true, //기본 정렬 사용여부
                                             searching: true, //전체 검색바
@@ -861,11 +881,7 @@
                                         }      
                                         // 각 테이블 column별 최소,최대값 입력 인풋 코드 end                     
 
-                                        // 검색 초기화 설정 
-                                        $('.table_resetBtn').on('click', function() {                                          
-                                            // DataTable 객체의 state.clear() 메소드를 호출하여 저장된 상태 정보를 삭제.
-                                            table.state.clear();
-                                        });                                        
+                                        // 검색 초기화 설정                                         
                                         setTimeout(function() {                                            
                                             // 10분(600,000 밀리초) 후에 로컬 스토리지에서 저장된 데이터를 삭제합니다.
                                             table.state.clear();
@@ -878,45 +894,38 @@
                                             table.column(1).search(keyword).draw();
                                         });
                                         // 티커 검색어 입력 코드 end
-
-                                        $("div.input-daterange").each(function(){
-                                            var $inputs = $(this).find('input');
-                                            $inputs.datepicker();
-                                            if ($inputs.length >= 2) {
-                                                var $from = $inputs.eq(0);
-                                                var $to   = $inputs.eq(1);
-                                                $from.on('changeDate', function (e) {
-                                                    var d = new Date(e.date.valueOf());
-                                                    $to.datepicker('setStartDate', d); // 종료일은 시작일보다 빠를 수 없다.
-                                                });
-                                                $to.on('changeDate', function (e) {
-                                                    var d = new Date(e.date.valueOf());
-                                                    $from.datepicker('setEndDate', d); // 시작일은 종료일보다 늦을 수 없다.
-                                                });
-                                            }
-                                        })
                                     });
                                 </script>
 
                                 <!-- 테이블 디자인 css -->
                                 <style>     
+                                    #content .sStokes .formWrap .list_wrap {
+                                        display: block;                                        
+                                    }
+                                   .datepicker {                                    
+                                        z-index: 99 !important;
+                                    }
                                     #quant_datatable_length {
                                         margin-top: 15px;
                                     }                
                                     .table_resetBtn {
                                         margin-left: 20px;
-                                    }                                                            
+                                    }
+                                    .dataTables_scrollHeadInner,
+                                    .dataTables_scrollFootInner {
+                                        padding-left: 0 !important;
+                                    }                                                                
                                     #quant_datatable thead {
                                         position: sticky;
                                         top: 0;
-                                        z-index: 999;
+                                        z-index: 89;
                                     }
                                     #quant_datatable thead th {
                                         background-color: #60747c;
                                     }
                                     table.dataTable tfoot>tr>th {
                                         background-color: #ededed;                                        
-                                    }
+                                    }                                    
                                     table.table-bordered.dataTable tbody tr.odd td {                                        
                                         background-color: #fff;
                                     }
@@ -925,22 +934,23 @@
                                     }                                    
                                     #quant_datatable thead th:nth-child(2),
                                     table.table-bordered.dataTable tbody td:nth-child(2),
-                                    table.dataTable tfoot>tr>th:nth-child(2){
+                                    table.dataTable tfoot>tr>th:nth-child(2), 
+                                    .table>thead:first-child>tr:first-child>th:nth-child(2) {
                                         position: sticky;
                                         left: 0;
-                                        z-index: 999;
+                                        z-index: 89;
                                         border-right: 2px solid #c8c8c8;
                                     }                                    
                                     table.table-bordered.dataTable tbody td:nth-child(2) {
-                                        z-index: 998;                                        
+                                        z-index: 88;                                        
                                     }
                                     #quant_datatable tfoot {
                                         position: sticky;                                        
                                         top: 35px;
                                         background-color: #ededed;                                                                                
-                                        z-index: 999;
+                                        z-index: 89;
                                     }
-                                    .dataTables_scrollBody {                                        
+                                    .dataTables_scrollBody {                     
                                         max-height: 600px !important;
                                         overflow-y: auto;
                                     }

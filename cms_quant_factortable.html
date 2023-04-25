@@ -495,7 +495,7 @@
         <!-- MAIN CONTENT -->
         <div id="content">
             <!-- 성과표시 테이블 cms 하드코딩 시작 -->
-            <div class="sStokes cmsWrap">
+            <div class="sStokes cmsWrap">                
                 <link rel="stylesheet" type="text/css" href="css/DH_cms.css" />
                 <!-- cms css -->
                 <script src="js/DH_cms.js"></script>
@@ -520,26 +520,185 @@
                         
                     </div>
 
-                    <div class="row margin-bottom-10">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>■ 기간수익률 = 가장 최근날짜 기준 누적수익률</li>
-                                <li>■ 연환산변동성 = STDEV(V7:V270)*SQRT(12) => n = (가장최근날짜-첫번째날짜)/365</li>
-                                <li>■ 수익횟수 = 월별 수익률중 &gt; 0 인 것의 갯수</li>
-                                <li>■ 연환산수익률 = (가장 최근날짜 기준 기준가/첫번째 날짜기준가)^(1/n)-1</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li>■ 최대낙폭 =min(Z7:Z12)</li>
-                                <li>■ 승률 = 수익횟수/전체 갯수</li>
-                                <li>■ 샤프비율 = 연환산수익률/연환산변동성</li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <form name="sch_form" method="get" action="">
                         <div class="formWrap">
+
+                            <div class="sch_box">                                
+                                <select name="" style="width: 220px;" class="input_select">                                    
+                                    <option value="">전략프리셋</option>
+                                    <option value="">시가총액-대형주</option>
+                                    <option value="">시가총액-중형주</option>                                    
+                                    <option value="">시가총액-소형주</option>                                    
+                                    <option value="">PER</option>                                    
+                                    <option value="">PBR</option>                                    
+                                    <option value="">PSR</option>                                    
+                                    <option value="">POR</option>                                    
+                                    <option value="">PCR</option>                                    
+                                    <option value="">PFCR</option>                                    
+                                    <option value="">PEG</option>                                    
+                                    <option value="">NCAV</option>                                    
+                                    <option value="">배당수익률</option>                                    
+                                    <option value="">EV/Sales</option>                                    
+                                    <option value="">EV/EBITDA</option>   
+
+                                    <option value="">ROE</option>
+                                    <option value="">ROA</option>
+                                    <option value="">GP/E</option>
+                                    <option value="">GP/A</option>
+                                    <option value="">자산회전율</option>
+                                    <option value="">매출총이익률
+                                    <option value="">영업이익률
+                                    <option value="">순이익률
+                                    <option value="">R&D 비율
+                                    <option value="">차입금비율
+                                        
+                                    <option value="">순이익성장률(QoQ)
+                                    <option value="">순이익성장률(YoY)
+                                    <option value="">영업이익성장률(QoQ)
+                                    <option value="">영업이익성장률(YoY)
+                                    <option value="">매출총이익성장률(QoQ)
+                                    <option value="">매출총이익성장률(YoY)
+                                    <option value="">매출액성장률(QoQ)
+                                    <option value="">매출액성장률(YoY)
+                                    <option value="">자산성장률(QoQ)
+                                    <option value="">자산성장률(YoY)
+                                    <option value="">자본성장률(QoQ)
+                                    <option value="">자본성장률(YoY)
+                                    <option value="">현금흐름성장(QoQ)
+                                    <option value="">현금흐름성장(YoY)
+                                    <option value="">차입금성장(QoQ)
+                                    <option value="">차입금성장(YoY)</option>
+                                </select> 
+
+                                <div class="factor_radioBox">
+                                    <span>Value Factor : </span>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox01" checked>
+                                        <label class="form-check-label" for="checkbox01">
+                                            시가총액-대형주, 시가총액-중형주, 시가총액-소형주, PER
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox02">
+                                        <label class="form-check-label" for="checkbox02">
+                                            PBR
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox03" checked>
+                                        <label class="form-check-label" for="checkbox03">
+                                            PSR
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox04">
+                                        <label class="form-check-label" for="checkbox04">
+                                            POR
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox05">
+                                        <label class="form-check-label" for="checkbox05">
+                                            PCR
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06">
+                                        <label class="form-check-label" for="checkbox06">
+                                            PFCR, PEG, NCAV, 배당수익률, EV/Sales, EV/EBITDA
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="factor_radioBox">
+                                    <span>Value Factor : </span>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox07" checked>
+                                        <label class="form-check-label" for="checkbox07">
+                                            ROE
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox08">
+                                        <label class="form-check-label" for="checkbox08">
+                                            ROA
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox09">
+                                        <label class="form-check-label" for="checkbox09">
+                                            GP/E
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox10">
+                                        <label class="form-check-label" for="checkbox10">
+                                            GP/A
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox11">
+                                        <label class="form-check-label" for="checkbox11">
+                                            자산회전율
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox12">
+                                        <label class="form-check-label" for="checkbox12">
+                                            매출총이익률
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox13">
+                                        <label class="form-check-label" for="checkbox13">
+                                            영업이익률
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox14">
+                                        <label class="form-check-label" for="checkbox14">
+                                            순이익률
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox15">
+                                        <label class="form-check-label" for="checkbox15">
+                                            R&D 비율
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox16">
+                                        <label class="form-check-label" for="checkbox16">
+                                            차입금비율
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="factor_radioBox">
+                                    <span>Value Factor : </span>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox17" checked>
+                                        <label class="form-check-label" for="checkbox17">
+                                            영업이익성장률(QoQ), 영업이익성장률(YoY), 매출총이익성장률(QoQ), 매출총이익성장률(YoY), 매출액성장률(QoQ), 매출액성장률(YoY), 자산성장률(QoQ),<br>자산성장률(YoY), 자본성장률(QoQ), 자본성장률(YoY), 현금흐름성장(QoQ), 현금흐름성장(YoY), 차입금성장(QoQ), 차입금성장(YoY)	
+                                        </label>
+                                    </div>                                    
+                                </div>
+                                
+                                <br>
+                                <button type="button" class="btn btn-primary deselect_all">전체 체크버튼 해제</button>
+                                <script>
+                                    // "전체 선텍해제" 라벨 클릭 시, .factor_radioBox .form-check label의 체크를 해제합니다.
+                                    $(".deselect_all").on("click", function() {
+                                        $(".factor_radioBox .form-check input").prop("checked", false);
+                                    });
+                                </script>
+                            </div>
+                            <!-- //sch_box -->
+
+                            <button class="btn btn-danger">백테스팅</button>
+                            <br><br>
+                            
+                            <hr style="border-top: 2px dashed #333">
+                            <br>
 
                             <div class="sch_box">
                                 <div class="radio_group">
@@ -550,64 +709,53 @@
                                         <input type="radio" name="cktype">기간
                                     </label>
                                     <label>
-                                        <input type="text" class="input_txt" autocomplete="off" id="datepicker1"
-                                            style="width: 100px"> ~ <input type="text" class="input_txt"
-                                            autocomplete="off" id="datepicker2" style="width: 100px">
+                                        <input type="text" class="input_txt" autocomplete="off" id="datepicker1" style="width: 100px">
+                                         ~ 
+                                         <input type="text" class="input_txt" autocomplete="off" id="datepicker2" style="width: 100px">
                                     </label>
                                     <a href="#" class="btn_sch">검색</a>
-                                </div>                                        
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <select name="" style="width: 80px;" class="input_select">                                    
-                                    <option value="">전체</option>
-                                    <option value="">제목</option>
-                                    <option value="">작성자</option>                                    
-                                </select>                                
-                                
-                                <div class="searchArea">
-                                    <!-- 검색어 자동완성 -->
-                                    <input type="text" placeholder="검색어를 입력하세요" class="searchInput">
-                                    <a href="#" class="btn_sch">검색</a>
-                                    <div class="sch_autocomplete">
-                                        <!--<div class="AutoComplete">-->
-                                        <!-- //자동완성 결과 노출 class : _show -->
-                                        <ul id="autocomplete_list">
-                                            <li class="_on">
-                                                <a href="#" class="_on">
-                                                    <span class="schList">01012345678</span>
-                                                </a>
-                                            </li>
-                                            <li class="_on">
-                                                <a href="#" class="_on">
-                                                    <span class="schList">홍길동</span>
-                                                </a>
-                                            </li>
-                                            <li class="_on">
-                                                <a href="#" class="_on">
-                                                    <span class="schList">홍두께</span>
-                                                </a>
-                                            </li>
-                                            <li class="_on">
-                                                <a href="#" class="_on">
-                                                    <span class="schList">team@naver.com</span>
-                                                </a>
-                                            </li>
-                                            <li class="_on">
-                                                <a href="#" class="_on">
-                                                    <span class="schList">team004574@datahero.co.kr</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- //searchArea -->
+                                </div>   
                             </div>
-                            <!-- //sch_box -->
-                            
+
+                            <div class="row margin-bottom-10 bg-color-white padding-10">
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>■ 기간수익률 = ##.##% (가장 최근날짜 기준 누적수익률)</li>
+                                        <li>■ 연환산수익률 = ##.##% (가장 최근날짜 기준 기준가/첫번째 날짜 기준가)^(1/n)-1
+                                            <br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└ n = (가장최근날짜-첫번째날짜)/365                                       
+                                        </li>                                        
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>■ 연환산변동성 = ##.##% (STDEV(V7:V270)*SQRT(12) )</li>
+                                        <li>■ 최대낙폭 = ##.##% (min(Z7:Z12))</li>
+                                        <li>■ 샤프비율 = ##.## (연환산수익률/연환산변동성)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>■ 수익횟수 = #,### (월별 수익률중 > 0 인 것의 갯수)</li>
+                                        <li>■ 승률 = 수##.##% (익횟수/전체 갯수)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br>
                             <div class="list_wrap">
+                                <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
+                                <script type="text/javascript" src="//cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+                                <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+                                <script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>                                
+                                <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>                                
                                 
-                                <table cellspacing="0" border="0" class="ui-jqgrid-htable table table-bordered table-hover">
+                                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">                                                                
+                                <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>         
+                                
+                                <table id="quant_datatable" class="table table-striped table-bordered dataTable" style="width:100%;">
                                     <thead>
                                         <tr>
+                                            <th>NO</th>
                                             <th>날짜</th>
                                             <th>종목1</th>
                                             <th>종목2</th>
@@ -634,198 +782,170 @@
                                             <th>누적수익률</th>
                                             <th>최대값</th>
                                             <th>최대손실</th>
+                                            <th>S&P500</th>
+                                            <th>누적수익률</th>
+                                            <th>다우</th>
+                                            <th>누적수익률</th>
+                                            <th>나스닥</th>
+                                            <th>누적수익률</th>                                                               
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>20/1/1</td>
-                                            <td>7.10%</td>
-                                            <td>7.07%</td>
-                                            <td>-10.63%</td>
-                                            <td>28.05%</td>
-                                            <td>1.03%</td>
-                                            <td>2.31%</td>
-                                            <td>4.79%</td>
-                                            <td>34.19%</td>
-                                            <td>8.88%</td>
-                                            <td>0.85%</td>
-                                            <td>-6.65%</td>
-                                            <td>2.43%</td>
-                                            <td>0.90%</td>
-                                            <td>-8.39%</td>
-                                            <td>1.89%</td>
-                                            <td>13.97%</td>
-                                            <td>4.62%</td>
-                                            <td>5.65%</td>
-                                            <td>-17.93%</td>
-                                            <td>8.03%</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>0.00%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>20/1/1</td>
-                                            <td>7.10%</td>
-                                            <td>7.07%</td>
-                                            <td>-10.63%</td>
-                                            <td>28.05%</td>
-                                            <td>1.03%</td>
-                                            <td>2.31%</td>
-                                            <td>4.79%</td>
-                                            <td>34.19%</td>
-                                            <td>8.88%</td>
-                                            <td>0.85%</td>
-                                            <td>-6.65%</td>
-                                            <td>2.43%</td>
-                                            <td>0.90%</td>
-                                            <td>-8.39%</td>
-                                            <td>1.89%</td>
-                                            <td>13.97%</td>
-                                            <td>4.62%</td>
-                                            <td>5.65%</td>
-                                            <td>-17.93%</td>
-                                            <td>8.03%</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>0.00%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>20/1/1</td>
-                                            <td>7.10%</td>
-                                            <td>7.07%</td>
-                                            <td>-10.63%</td>
-                                            <td>28.05%</td>
-                                            <td>1.03%</td>
-                                            <td>2.31%</td>
-                                            <td>4.79%</td>
-                                            <td>34.19%</td>
-                                            <td>8.88%</td>
-                                            <td>0.85%</td>
-                                            <td>-6.65%</td>
-                                            <td>2.43%</td>
-                                            <td>0.90%</td>
-                                            <td>-8.39%</td>
-                                            <td>1.89%</td>
-                                            <td>13.97%</td>
-                                            <td>4.62%</td>
-                                            <td>5.65%</td>
-                                            <td>-17.93%</td>
-                                            <td>8.03%</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>0.00%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>20/1/1</td>
-                                            <td>7.10%</td>
-                                            <td>7.07%</td>
-                                            <td>-10.63%</td>
-                                            <td>28.05%</td>
-                                            <td>1.03%</td>
-                                            <td>2.31%</td>
-                                            <td>4.79%</td>
-                                            <td>34.19%</td>
-                                            <td>8.88%</td>
-                                            <td>0.85%</td>
-                                            <td>-6.65%</td>
-                                            <td>2.43%</td>
-                                            <td>0.90%</td>
-                                            <td>-8.39%</td>
-                                            <td>1.89%</td>
-                                            <td>13.97%</td>
-                                            <td>4.62%</td>
-                                            <td>5.65%</td>
-                                            <td>-17.93%</td>
-                                            <td>8.03%</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>4.41%</td>
-                                            <td>1044.08</td>
-                                            <td>0.00%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    </tbody>
+                                    <tfoot>
+                                        <th></th>
+                                    </tfoot>                               
                                 </table>
+
+                                <script>
+                                    $(document).ready(function () { 
+                                        //input을 datepicker로 선언
+                                        $("#datepicker1, #datepicker2").datepicker({      
+                                            format: 'yyyy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+                                            startDate: '-20y', //달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+                                            endDate: '+10d', //달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+                                            autoclose: true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+                                            calendarWeeks: true, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
+                                            clearBtn: true, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true                                                                                        
+                                            daysOfWeekHighlighted: [0], //강조 되어야 하는 요일 설정                                            
+                                            orientation: 'bottom',                                            
+                                            templates: {
+                                                leftArrow: '&laquo;',
+                                                rightArrow: '&raquo;',
+                                            }, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징                                            
+                                            todayHighlight: true, //오늘 날짜에 하이라이팅 기능 기본값 :false                                            
+                                            weekStart: 1, //달력 시작 요일 선택하는 것 기본값은 0인 일요일                                            
+                                        });
+                                        //초기값을 오늘 날짜로 설정해줘야 합니다.
+                                        $('#datepicker1, #datepicker2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)                                                                                              
+
+                                        // 테이블 디자인 플러그인
+                                        var table = $('#quant_datatable').DataTable({          
+                                            // 엑셀 다운로드 버튼                                            
+                                            dom:"<'row'<'col-sm-12'B>>" + 
+                                                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                                                "<'row'<'col-sm-12'tr>>" +
+                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                            buttons: [
+                                            {
+                                                extend: 'copyHtml5',
+                                                text: '복사',
+                                                footer: true,
+                                                className: 'btn btn-primary',
+                                                exportOptions: {
+                                                    modifier: {
+                                                        selected: true // 현재 선택된 셀만 복사하지 않도록 설정
+                                                    }
+                                                }
+                                            }, {
+                                                extend: 'excel',
+                                                text: '엑셀 다운로드',
+                                                footer: true,
+                                                className: 'btn btn-success',
+                                                charset: 'utf-8' // 엑셀 파일 인코딩 설정
+                                            },  {
+                                                text: '검색 초기화',
+                                                action: function (e, dt, node, config) {
+                                                dt.state.clear(); // 상태 초기화
+                                                window.location.reload(); // 새로고침
+                                                },
+                                                footer: true,
+                                                className: 'btn btn-warning table_resetBtn'
+                                            } ],                                                                                        
+                                            // 엑셀 다운로드 버튼 end
+                                            
+                                            // 테이블 데이터 불러오기
+                                            ajax: 'ajax/data/factor_investing.php',                 
+                                            serverSide: false, //데이터처리를 서버(true)에서 할지 클라이인트(false)에서 할지 정의    
+                                            // 테이블 데이터 불러오기 end
+                                                                                        
+                                            scrollX: true,
+                                            scrollY: "100%",
+                                            processing: true, //처리 중 로딩처리
+                                            ordering: true, //기본 정렬 사용여부
+                                            searching: true, //전체 검색바
+                                            pagingType: 'full_numbers',               
+                                            language: {
+                                                "emptyTable": "데이터가 없어요.",
+                                                "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+                                                "info": "현재 _START_ - _END_ / _TOTAL_건",
+                                                "infoEmpty": "데이터 없음",
+                                                "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+                                                "search": "전체 데이터 검색: ",
+                                                "zeroRecords": "일치하는 데이터가 없어요.",
+                                                "loadingRecords": "로딩중...",
+                                                "processing":     "잠시만 기다려 주세요...",
+                                                "paginate": {
+                                                    "next": "다음",
+                                                    "previous": "이전",
+                                                    "first": '처음',
+                                                    "last": '마지막'
+                                                },
+                                            },
+                                            lengthMenu: [
+                                                [25, 50, 100, -1],
+                                                [25, 50, 100, '전체'],
+                                            ],
+                                            stateSave: true, // 지금 화면 저장    
+                                            // 테이블 디자인 플러그인 end         
+                                        });
+
+                                        // 검색 초기화 설정                                         
+                                        setTimeout(function() {                                            
+                                            // 10분(600,000 밀리초) 후에 로컬 스토리지에서 저장된 데이터를 삭제합니다.
+                                            table.state.clear();
+                                        }, 600000);
+                                        // 검색 초기화 설정 end
+                                    });
+                                </script>
+
+                                <!-- 테이블 디자인 css -->
+                                <style>                                         
+                                    .datepicker {                                    
+                                        z-index: 99 !important;
+                                    }
+                                    #content .sStokes .formWrap .list_wrap {
+                                        display: block;                                        
+                                    }                                 
+                                    #quant_datatable_length {
+                                        margin-top: 15px;
+                                    }                  
+                                    .dataTables_scrollHeadInner,
+                                    .dataTables_scrollFootInner {
+                                        padding-left: 0 !important;
+                                    }                                                                                                   
+                                    .dataTables_scrollBody {                     
+                                        max-height: 600px !important;
+                                        overflow-y: auto;
+                                    }
+                                    #content .sStokes table th, #content .sStokes table td {
+                                        min-width: 70px;
+                                    }
+                                    #content .cmsWrap .formWrap .sch_box {
+                                        display: block;                                        
+                                    }
+                                    .factor_radioBox {
+                                        margin-top: 12px;
+                                        display: flex;
+                                        gap: 15px;                                        
+                                        align-items: flex-start;
+                                    }
+                                    .factor_radioBox > span {                                        
+                                        width: 100px;
+                                    }
+                                    .factor_radioBox .form-check {
+                                        display: inline-block;                                                                                
+                                    }
+                                    .factor_radioBox .form-check label {
+                                        cursor: pointer;
+                                        vertical-align: top;
+                                    }
+                                </style>
+                                
                             </div>
 
                         </div>
                         <!-- //formWrap  -->
                     </form>
                 </div>
-
-                <div class="paginate">
-                    <a href="#" class="cb_pre">&#171;</a>
-                    <a href="#" class="cb_pre">&#60;</a>
-                    <strong>1</strong>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#" class="cb_next">&#62;</a>
-                    <a href="#" class="cb_next">&#187;</a>
-                </div>
-
-                <!-- ajax 모달 팝업 실행 -->
-                <script>
-                    $(document).ready(function () {
-                        $(function () {
-                            // 월정기 - 결제취소
-                            $('#auto_cacl').on('click', function () {
-                                console.log("팝업열기, 리셋");
-                                $('div.modal').removeData().modal({ remote: '_auto_cacl.html' });
-                            })
-                            // 월정기 - 결제취소
-                            $('#auto_cacl2').on('click', function () {
-                                $('div.modal').removeData().modal({ remote: '_auto_cacl2.html' });
-                            })
-                        });
-                    });
-                </script>
-                <!-- //ajax 모달 팝업 실행 -->
-
-                <!-- ajax 팝업 불러오는 영역 -->
-                <div class="modal fade">
-                    <div class="modal-dialog"> 
-                        <div class="modal-content">        
-                            <!-- remote ajax call이 되는영역 -->    
-                        </div>
-                    </div>
-                </div>
-                <!-- //ajax 팝업 불러오는 영역 -->
 
             </div>
             <!-- //sStokes -->
@@ -871,91 +991,3 @@
     <!-- END PAGE FOOTER -->
 
     <!--================================================== -->
-
-
-    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-    <script data-pace-options='{ "restartOnRequestAfter": true }'
-        src="/admin_assets/js/plugin/pace/pace.min.js"></script>
-
-    <!-- These scripts will be located in Header So we can add scripts inside body (used in class.datatables.php) -->
-    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="/admin_assets/js/libs/jquery-2.0.2.min.js"><\/script>');
-			}
-		</script>
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="/admin_assets/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script> -->
-
-    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events
-		<script src="/admin_assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
-
-    <!-- BOOTSTRAP JS -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/bootstrap/bootstrap.min.js"></script>
-
-    <!-- CUSTOM NOTIFICATION -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/notification/SmartNotification.min.js"></script>
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/notification/SmartNotification.min.js"></script>
-
-    <!-- JARVIS WIDGETS -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/smartwidgets/jarvis.widget.min.js"></script>
-
-    <!-- EASY PIE CHARTS -->
-    <script
-        src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-
-    <!-- SPARKLINES -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- JQUERY VALIDATE -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
-
-    <!-- JQUERY MASKED INPUT -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-
-    <!-- JQUERY SELECT2 INPUT -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/select2/select2.min.js"></script>
-
-    <!-- JQUERY UI + Bootstrap Slider -->
-    <script
-        src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-
-    <!-- browser msie issue fix -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-
-    <!-- FastClick: For mobile devices -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/plugin/fastclick/fastclick.min.js"></script>
-
-    <!--[if IE 8]>
-			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-		<![endif]-->
-
-    <!-- Demo purpose only -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/demo.min.js"></script>
-
-    <!-- MAIN APP JS FILE -->
-    <script src="http://kapi.choicestock.co.kr/admin_assets/js/app.min.js"></script>
-
-    <script type="text/javascript">
-        // DO NOT REMOVE : GLOBAL FUNCTIONS!
-        $(document).ready(function () {
-            pageSetUp();
-        })
-    </script>
-
-    <!-- PAGE RELATED PLUGIN(S) 
-<script src="..."></script>-->
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-    <script>
-
-        $(document).ready(function () {
-            // PAGE RELATED SCRIPTS
-        })
-
-    </script>
