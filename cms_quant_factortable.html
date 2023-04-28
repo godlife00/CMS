@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-    <title>회원/결제 - FN데이터 뷰어 Admin Panel</title>
+    <title>성과표시 테이블</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -540,7 +540,6 @@
                                     <option value="">배당수익률</option>                                    
                                     <option value="">EV/Sales</option>                                    
                                     <option value="">EV/EBITDA</option>   
-
                                     <option value="">ROE</option>
                                     <option value="">ROA</option>
                                     <option value="">GP/E</option>
@@ -550,8 +549,7 @@
                                     <option value="">영업이익률
                                     <option value="">순이익률
                                     <option value="">R&D 비율
-                                    <option value="">차입금비율
-                                        
+                                    <option value="">차입금비율                                        
                                     <option value="">순이익성장률(QoQ)
                                     <option value="">순이익성장률(YoY)
                                     <option value="">영업이익성장률(QoQ)
@@ -573,9 +571,27 @@
                                 <div class="factor_radioBox">
                                     <span>Value Factor : </span>                                    
                                     <div class="form-check">
-                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox01" checked>
+                                        <input class="form-check-input" type="checkbox" name="" id="checkbox01" checked>
                                         <label class="form-check-label" for="checkbox01">
-                                            시가총액-대형주, 시가총액-중형주, 시가총액-소형주, PER
+                                            시가총액-대형주
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox01_2" >
+                                        <label class="form-check-label" for="checkbox01_2">
+                                            시가총액-중형주
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox01_3" >
+                                        <label class="form-check-label" for="checkbox01_3">
+                                            시가총액-소형주
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox01_4" >
+                                        <label class="form-check-label" for="checkbox01_4">
+                                            PER
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -605,12 +621,42 @@
                                     <div class="form-check">
                                         <input class="form-check-input"  type="checkbox" name="" id="checkbox06">
                                         <label class="form-check-label" for="checkbox06">
-                                            PFCR, PEG, NCAV, 배당수익률, EV/Sales, EV/EBITDA
+                                            PFCR
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06_2">
+                                        <label class="form-check-label" for="checkbox06_2">
+                                            PEG
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06_3">
+                                        <label class="form-check-label" for="checkbox06_3">
+                                            NCAV
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06_4">
+                                        <label class="form-check-label" for="checkbox06_4">
+                                            배당수익률
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06_5">
+                                        <label class="form-check-label" for="checkbox06_5">
+                                            EV/Sales
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox06_6">
+                                        <label class="form-check-label" for="checkbox06_6">
+                                            EV/EBITDA
                                         </label>
                                     </div>
                                 </div>
                                 <div class="factor_radioBox">
-                                    <span>Value Factor : </span>                                    
+                                    <span>Quality  Factor : </span>                                    
                                     <div class="form-check">
                                         <input class="form-check-input"  type="checkbox" name="" id="checkbox07" checked>
                                         <label class="form-check-label" for="checkbox07">
@@ -674,11 +720,101 @@
                                 </div>
                                 
                                 <div class="factor_radioBox">
-                                    <span>Value Factor : </span>                                    
+                                    <span>Growth Factor : </span>                                    
                                     <div class="form-check">
                                         <input class="form-check-input"  type="checkbox" name="" id="checkbox17" checked>
                                         <label class="form-check-label" for="checkbox17">
-                                            영업이익성장률(QoQ), 영업이익성장률(YoY), 매출총이익성장률(QoQ), 매출총이익성장률(YoY), 매출액성장률(QoQ), 매출액성장률(YoY), 자산성장률(QoQ),<br>자산성장률(YoY), 자본성장률(QoQ), 자본성장률(YoY), 현금흐름성장(QoQ), 현금흐름성장(YoY), 차입금성장(QoQ), 차입금성장(YoY)	
+                                            순이익성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox18" checked>
+                                        <label class="form-check-label" for="checkbox18">
+                                            순이익성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox19" checked>
+                                        <label class="form-check-label" for="checkbox19">
+                                            영업이익성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox20" checked>
+                                        <label class="form-check-label" for="checkbox20">
+                                            영업이익성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox21" checked>
+                                        <label class="form-check-label" for="checkbox21">
+                                            매출총이익성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox22" checked>
+                                        <label class="form-check-label" for="checkbox22">
+                                            매출총이익성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox23" checked>
+                                        <label class="form-check-label" for="checkbox23">
+                                            매출액성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox24" checked>
+                                        <label class="form-check-label" for="checkbox24">
+                                            매출액성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox25" checked>
+                                        <label class="form-check-label" for="checkbox25">
+                                            자산성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox26" checked>
+                                        <label class="form-check-label" for="checkbox26">
+                                            자산성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox27" checked>
+                                        <label class="form-check-label" for="checkbox27">
+                                            자본성장률(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox28" checked>
+                                        <label class="form-check-label" for="checkbox28">
+                                            자본성장률(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox29" checked>
+                                        <label class="form-check-label" for="checkbox29">
+                                            현금흐름성장(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox30" checked>
+                                        <label class="form-check-label" for="checkbox30">
+                                            현금흐름성장(YoY)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox31" checked>
+                                        <label class="form-check-label" for="checkbox31">
+                                            차입금성장(QoQ)
+                                        </label>
+                                    </div>                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input"  type="checkbox" name="" id="checkbox32" checked>
+                                        <label class="form-check-label" for="checkbox32">
+                                            차입금성장(YoY)	
                                         </label>
                                     </div>                                    
                                 </div>
@@ -925,7 +1061,8 @@
                                     .factor_radioBox {
                                         margin-top: 12px;
                                         display: flex;
-                                        gap: 15px;                                        
+                                        flex-wrap: wrap;
+                                        gap: 7px;                                        
                                         align-items: flex-start;
                                     }
                                     .factor_radioBox > span {                                        
